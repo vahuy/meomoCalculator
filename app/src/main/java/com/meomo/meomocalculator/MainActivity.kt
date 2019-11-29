@@ -1,12 +1,11 @@
 package com.meomo.meomocalculator
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
-import android.view.MenuItem
-
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +13,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        buttonCalculate.setOnClickListener {
+            Log.i("MainActivity", "Calculator")
+        }
+
+        buttonCopy.setOnClickListener {
+            var value: String = textResult.toString()
+            Log.i("MainActivity", "Copy")
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
