@@ -84,7 +84,7 @@
         android:id="@+id/textAfterTaxed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="14dp"
         android:layout_marginTop="24dp"
         android:text="@string/after_taxed"
         app:layout_constraintStart_toEndOf="@+id/editFee"
@@ -146,26 +146,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textGr" />
 
-    <EditText
-        android:id="@+id/editUSVN"
-        android:layout_width="100dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:textAlignment="viewEnd"
-        app:layout_constraintStart_toEndOf="@+id/textUSVN"
-        app:layout_constraintTop_toBottomOf="@+id/textGr" />
-
     <TextView
         android:id="@+id/textVND1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="21dp"
         android:layout_marginTop="36dp"
         android:text="@string/vnd"
-        app:layout_constraintStart_toEndOf="@+id/editUSVN"
+        app:layout_constraintStart_toEndOf="@+id/textViewUSVNResult"
         app:layout_constraintTop_toBottomOf="@+id/textGr" />
 
     <TextView
@@ -264,9 +252,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="38dp"
+        android:layout_marginEnd="28dp"
         android:text="@string/calculate"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textResult"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -274,7 +263,7 @@
         android:id="@+id/buttonCopy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="29dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginBottom="68dp"
         android:text="@string/copy"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -282,7 +271,7 @@
 
     <TextView
         android:id="@+id/textResult"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="49dp"
         android:layout_marginStart="19dp"
         android:layout_marginTop="31dp"
@@ -297,7 +286,7 @@
         android:id="@+id/textFee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="24dp"
         android:text="Fee"
         app:layout_constraintStart_toStartOf="parent"
@@ -305,7 +294,7 @@
 
     <EditText
         android:id="@+id/editFee"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -347,7 +336,7 @@
         android:id="@+id/textViewVNDResult1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="13dp"
         android:layout_marginTop="32dp"
         android:text="0"
         android:textColor="#3F51B5"
@@ -366,5 +355,29 @@
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/textVND2"
         app:layout_constraintTop_toBottomOf="@+id/textUSVN" />
+
+    <TextView
+        android:id="@+id/textViewUSVNResult"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="21dp"
+        android:text="0"
+        android:textColor="#3F51B5"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/textVND1"
+        app:layout_constraintStart_toEndOf="@+id/textUSVN"
+        app:layout_constraintTop_toBottomOf="@+id/textGr" />
+
+    <Button
+        android:id="@+id/buttonClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="67dp"
+        android:layout_marginBottom="65dp"
+        android:text="Clear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,17 @@
 package com.meomo.meomocalculator
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import android.view.Menu
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import java.text.DecimalFormat
+import java.text.NumberFormat
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +27,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         editKg.setOnClickListener {
+            editKg.text = null
             editGr.text = null
+        }
+
+        buttonClear.setOnClickListener {
+            editPrice.text = null
+            editDiscount.text = null
+            editGr.text = null
+            editKg.text = null
+            editUSShip.text = null
         }
 
         buttonCalculate.setOnClickListener {
@@ -37,14 +50,7 @@ class MainActivity : AppCompatActivity() {
             val tax: Double = getDouble(editTax.text.toString())
             val kg: Double = getDouble(editKg.text.toString())
             val weightCharge: Double = getDouble(editWeightCharge.text.toString())
-//            val discounted: Double = editDiscounted.text.toString().toDouble()
-//            val gr: Double = editGr.text.toString().toDouble()
 
-
-
-
-
-            val usvn: Double = getDouble(editUSVN.text.toString())
             val usShip: Double = getDouble(editUSShip.text.toString())
 
             val fee: Double = getDouble(editFee.text.toString())
@@ -55,10 +61,9 @@ class MainActivity : AppCompatActivity() {
             val rDiscounted = price * (100 - discount)*0.01
             val afterTaxed = price + price * tax *0.01
             val weightChargeResult = weightCharge * kg
-            val result: Double = (afterTaxed + usvn + usShip + fee + weightChargeResult) * rate
+            val result: Double = (afterTaxed + usShip + fee + weightChargeResult) * rate
 
             Log.i("afterTaxed", afterTaxed.toString())
-            Log.i("usvn", usvn.toString())
             Log.i("usShip", usShip.toString())
             Log.i("fee", fee.toString())
             Log.i("weightChargeResult", fee.toString())
@@ -66,28 +71,36 @@ class MainActivity : AppCompatActivity() {
             /**
              * Calculate for compare
              */
-            val usvbVND = usvn * rate
             val usShipVND = usShip * rate
-
+            val usvbVND = weightChargeResult * rate
             /**
              * setText
              */
             textDiscoutedResult.text = rDiscounted.toString()
             textAfterTaxedResult.text = afterTaxed.toString()
-            textViewVNDResult1.text = usvbVND.toString()
-            textViewVNDResult2.text = usShipVND.toString()
-
+            textViewVNDResult1.text = formatNumber(usvbVND)
+            textViewVNDResult2.text = formatNumber(usShipVND)
+            textViewUSVNResult.text = formatNumber(weightChargeResult)
             /**
              * set Result
              */
-            textResult.text = result.toLong().toString()
+            textResult.text = formatNumber(result)
         }
 
         buttonCopy.setOnClickListener {
-            val value: String = textResult.toString()
-            Log.i("MainActivity", "Copy")
-            Toast.makeText(this, value, Toast.LENGTH_LONG).show()
+            val clipboard: ClipboardManager =
+                getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("result", textResult.text.toString())
+            clipboard.setPrimaryClip(clip)
         }
+    }
+
+    /**
+     * Return x.xxx.xxx format
+     */
+    private fun formatNumber(stringNumber: Double): String {
+        val formatter: NumberFormat = DecimalFormat("#,###")
+        return formatter.format(stringNumber)
     }
 
     private fun getDouble(string: String): Double {
