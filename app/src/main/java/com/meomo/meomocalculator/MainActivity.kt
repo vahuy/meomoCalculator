@@ -76,8 +76,8 @@ class MainActivity : AppCompatActivity() {
             /**
              * setText
              */
-            textDiscoutedResult.text = rDiscounted.toString()
-            textAfterTaxedResult.text = afterTaxed.toString()
+            textDiscoutedResult.text = formatNumberWithDecimal(rDiscounted)
+            textAfterTaxedResult.text = formatNumberWithDecimal(afterTaxed)
             textViewVNDResult1.text = formatNumber(usvbVND)
             textViewVNDResult2.text = formatNumber(usShipVND)
             textViewUSVNResult.text = formatNumber(weightChargeResult)
@@ -96,10 +96,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Return x.xxx.xxx format
+     * Return x,xxx,xxx format
      */
     private fun formatNumber(stringNumber: Double): String {
         val formatter: NumberFormat = DecimalFormat("#,###")
+        return formatter.format(stringNumber)
+    }
+    /**
+     * Return x,xxx.xx format
+     */
+    private fun formatNumberWithDecimal(stringNumber: Double): String {
+        val formatter: NumberFormat = DecimalFormat("#,###.##")
         return formatter.format(stringNumber)
     }
 
