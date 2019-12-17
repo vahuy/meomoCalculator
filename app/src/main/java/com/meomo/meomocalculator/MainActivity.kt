@@ -72,8 +72,8 @@ class MainActivity : AppCompatActivity() {
             /**
              * Calculate
              */
-            val rDiscounted = price * (100 - discount)*0.01
-            val afterTaxed = price + price * tax *0.01
+            val rDiscounted = price * (100 - discount) * 0.01
+            val afterTaxed = rDiscounted + rDiscounted * tax * 0.01
             val weightChargeResult = weightCharge * kg
             val result: Double = (afterTaxed + usShip + fee + weightChargeResult) * rate
 
@@ -116,6 +116,7 @@ class MainActivity : AppCompatActivity() {
         val formatter: NumberFormat = DecimalFormat("#,###")
         return formatter.format(stringNumber)
     }
+
     /**
      * Return x,xxx.xx format
      */
