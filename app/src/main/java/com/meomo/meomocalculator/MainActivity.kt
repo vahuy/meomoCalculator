@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -35,12 +36,25 @@ class MainActivity : AppCompatActivity() {
             editPrice.text = null
             editDiscount.text = null
             editGr.text = null
-            editKg.text = null
+            editKg.setText("0.1")
             editUSShip.text = null
+            textDiscoutedResult.text = "0"
+            textAfterTaxedResult.text = "0"
+            textViewUSVNResult.text = "0"
+            textViewVNDResult1.text = "0"
+            textViewVNDResult2.text = "0"
+            textResult.text = "0"
+        }
+
+        textResult.setOnClickListener {
+            val clipboard: ClipboardManager =
+                getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("result", textResult.text.toString())
+            clipboard.setPrimaryClip(clip)
+            Toast.makeText(this, "Copied", Toast.LENGTH_SHORT).show()
         }
 
         buttonCalculate.setOnClickListener {
-
             /***
              * get value
              */
@@ -80,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             textAfterTaxedResult.text = formatNumberWithDecimal(afterTaxed)
             textViewVNDResult1.text = formatNumber(usvbVND)
             textViewVNDResult2.text = formatNumber(usShipVND)
-            textViewUSVNResult.text = formatNumber(weightChargeResult)
+            textViewUSVNResult.text = formatNumberWithDecimal(weightChargeResult)
             /**
              * set Result
              */
