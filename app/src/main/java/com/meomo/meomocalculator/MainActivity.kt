@@ -32,12 +32,18 @@ class MainActivity : AppCompatActivity() {
             editGr.text = null
         }
 
+        editFeePercent.setOnClickListener {
+            editFee.text = null
+        }
+
         buttonClear.setOnClickListener {
             editPrice.text = null
             editDiscount.text = null
             editGr.text = null
             editKg.setText("0.1")
             editUSShip.text = null
+            editFeePercent.text = null
+            editFee.setText("5")
             textDiscoutedResult.text = "0"
             textAfterTaxedResult.text = "0"
             textViewUSVNResult.text = "0"
@@ -67,12 +73,16 @@ class MainActivity : AppCompatActivity() {
 
             val usShip: Double = getDouble(editUSShip.text.toString())
 
-            val fee: Double = getDouble(editFee.text.toString())
+            var fee: Double = getDouble(editFee.text.toString())
 
             /**
              * Calculate
              */
             val rDiscounted = price * (100 - discount) * 0.01
+            val feePercent: Double = getDouble(editFeePercent.text.toString()) * rDiscounted * 0.01
+            if (feePercent > 0.0) {
+                fee = feePercent
+            }
             val afterTaxed = rDiscounted + rDiscounted * tax * 0.01
             val weightChargeResult = weightCharge * kg
             val result: Double = (afterTaxed + usShip + fee + weightChargeResult) * rate
