@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MeoMo Calculator</string>
+    <string name="action_settings">Settings</string>
+    <string name="discounted">Discounted</string>
+    <string name="price">Price</string>
+    <string name="discount">Discount %</string>
+    <string name="after_taxed">After taxed</string>
+    <string name="gr">Gr</string>
+    <string name="kg">Kg</string>
+    <string name="us_vn">US-VN</string>
+    <string name="vnd">VND</string>
+    <string name="us_ship">US Ship</string>
+    <string name="vnd2">VND</string>
+    <string name="weight_charge">Weight charge</string>
+    <string name="rate">Rate</string>
+    <string name="tax">Tax</string>
+    <string name="calculate">Calculate</string>
+    <string name="copy">Copy</string>
+    <string name="result">Result</string>
+</resources>
